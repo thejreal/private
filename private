@@ -168,7 +168,7 @@ end)
             end
         end
     end)
-    PlayerSection:NewDropdown("Staff/Unreleased Suits", "Gives you staff/unreleased suits!", {"The Red Flash S6", "The Green Flash S6", "The Loganion"}, function(currentOption)
+    PlayerSection:NewDropdown("Staff/Unreleased Suits", "Gives you staff/unreleased suits!", {"The Red Flash S6", "The Green Flash S6", "The Loganion","The Flash S5"}, function(currentOption)
         local args = {
             [1] = (currentOption)
         }
