@@ -1,23 +1,34 @@
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+
+Notification.new("info", "PrecHub Private", "Join the discord: .gg/PYxFtphzqg") -- Args(<string> Type, <string> Heading, <string> Body, <boolean?> AutoRemoveNotif, <number?> AutoRemoveTime, <function?> OnCloseFunction)
+
+local notif = Notification.new("success", "Success", "Success body message.")
+notif:changeHeading("New Heading") -- Args(<string> NewHeading)
+notif:changeBody("New Body") -- Args(<string> NewBody)
+notif:deleteTimeout(3) -- Args(<number> DeleteWaitTime)
+notif:delete()
+
 if game.PlaceId == 3433421799 then
-    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("PrecHub Private: The Flash: Infinite Earths", "BloodTheme")
-    
+    local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vep1032/VepStuff/main/VL"))()
+    local Window = VLib:Window("PrecHub Private v2", "TFIE", "P")
+
     --Main
-    local Main = Window:NewTab("Main")
-    local MainSection = Main:NewSection("Main")
-    MainSection:NewButton("Kill All", "Kills everyone in the server!", function()
+    local Main = Window:Tab("Main")
+    Main:Label("Main")
+    Main:Button("Kill All",function()
         for _, v in pairs(game:GetService("Players"):GetPlayers()) do 
             if v ~= game:GetService("Players").LocalPlayer then
                 game:GetService("ReplicatedStorage").Events.AntiMonitor.InstantKill:FireServer(v.Character)
             end
         end
     end)
-    MainSection:NewButton("Kill Player","Opens a UI that allows you to kill a player!", function()
-        -- Gui to Lua
+    Main:Button("Kill Player",function()
+ --UnbreakableNinj
+-- Gui to Lua
 -- Version: 3.2
-
--- Instances:
-
+ 
+-- Instances: 
+ 
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -27,30 +38,30 @@ local dummyButton = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local Top = Instance.new("Frame")
 local Exit = Instance.new("TextButton")
-
+ 
 --Properties:
-
+ 
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
+ 
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Frame.Position = UDim2.new(0.498442382, 0, 0.0971660092, 0)
 Frame.Size = UDim2.new(0, 340, 0, 324)
 Frame.Draggable = true
 Frame.Active = true
-
+ 
 UICorner.Parent = Frame
-
+ 
 ScrollingFrame.Parent = Frame
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ScrollingFrame.BackgroundTransparency = 1.000
 ScrollingFrame.Position = UDim2.new(0.228274897, 0, 0.025616033, 0)
 ScrollingFrame.Size = UDim2.new(0, 262, 0, 315)
-
+ 
 UICorner_2.Parent = ScrollingFrame
-
+ 
 dummyButton.Name = "dummyButton"
 dummyButton.Parent = ScrollingFrame
 dummyButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -62,17 +73,17 @@ dummyButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 dummyButton.TextScaled = true
 dummyButton.TextSize = 14.000
 dummyButton.TextWrapped = true
-
+ 
 UICorner_3.Parent = dummyButton
-
+ 
 Top.Name = "Top"
 Top.Parent = Frame
 Top.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Top.BorderSizePixel = 0
 Top.Position = UDim2.new(0.00138370285, 0, -0.0206802618, 0)
 Top.Size = UDim2.new(0, 339, 0, 13)
-
-
+ 
+ 
 Exit.Name = "Exit"
 Exit.Parent = Top
 Exit.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
@@ -85,137 +96,142 @@ Exit.TextSize = 24.000
 Exit.MouseButton1Down:connect(function()
 	Frame:Destroy()
 end)
-
+ 
 -- Scripts:
-
+ 
 local function GYZTAG_fake_script() -- ScreenGui.LocalScript 
 	local script = Instance.new('LocalScript', ScreenGui)
-
+ 
 	local Plr = game:GetService("Players") 
 	local PlrFold = script.Parent.Frame.ScrollingFrame
-	
+ 
 	local dummyButton = PlrFold.dummyButton:Clone() 
 	PlrFold.dummyButton:Destroy() 
-	
+ 
 	function update() 
-	
+ 
 		PlrFold:ClearAllChildren() 
-	
+ 
 		local CurrentPlayer = 0 
-	
+ 
 		for i,v in pairs(Plr:GetPlayers()) do 
-	
+ 
 			CurrentPlayer = CurrentPlayer + 1 
-	
+ 
 			local newButton = dummyButton:Clone() 
-	
+ 
 			newButton.Position = UDim2.new( 0, 0, 0, newButton.Size.Y.Offset * ( CurrentPlayer - 1 ) ) 
 			newButton.Text = v.Name 
-	
+ 
 			newButton.MouseButton1Down:connect(function()
-	
+ 
 				game:GetService("ReplicatedStorage").Events.AntiMonitor.InstantKill:FireServer(v.Character)
 			end)
-	
+ 
 			newButton.Parent = PlrFold
-	
+ 
 		end
-	
+ 
 	end
-	
+ 
 	Plr.PlayerAdded:connect(update) 
 	Plr.PlayerRemoving:connect(update) 
-	
+ 
 	update()
 end
 coroutine.wrap(GYZTAG_fake_script)()
-end)
-    MainSection:NewButton("Dampen Powers", "Dampens the powers of anyone around you!", function()
+    end)
+    Main:Button("Dampen Powers",function()
         game.ReplicatedStorage.Events.GraceCicada.DampenPowers:FireServer()
     end)
-    MainSection:NewButton("Energy Burst", "Releases a burst of energy that damages! ", function()
+    Main:Button("Energy Burst", function ()
         game.ReplicatedStorage.Events.GraceCicada.EnergyBurst:FireServer()
     end)
-    MainSection:NewLabel("Elongated Man")
-    MainSection:NewButton("Stretch Punch", "A long arm punch!", function()
-        game.ReplicatedStorage.Events.ElongatedMan.StretchArm:FireServer()
+    Main:Label("Elongated Man")
+    Main:Button("Stretch Punch", function ()
+        game.ReplicatedStorage.Events.ElongatedMan.StretchArm:FireServer()  
     end)
-    MainSection:NewLabel("The Thinker")
-    MainSection:NewButton("Vibration Blast", "Sends a blast of vibration knocking people back!", function()
+    Main:Label("The Thinker")
+    Main:Button("Vibration Blast", function ()
         game.ReplicatedStorage.Events.Thinker.VibrationBlast:FireServer()
     end)
-     
+
+
     --Player
-    local Player = Window:NewTab("Player")
-    local PlayerSection = Player:NewSection("Player")
-    PlayerSection:NewSlider("Speed", "Makes you go zoom.", 5000, 16, function(s) -- 5000 (MaxValue) | 16 (MinValue)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    local Player = Window:Tab("Player")
+    Player:Label("Player")
+    Player:Slider("Walkspeed",16,5000,16,function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
     end)
-    PlayerSection:NewSlider("JumpPower", "A bit buggy at times, but should modify jump height.", 1000, 0, function(s) -- 1000 (MaxValue) | 0 (MinValue)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    Player:Slider("JumpPower",50,1000,50,function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
     end)
-    PlayerSection:NewButton("Shield", "Puts a protective shield around you!", function()
+    Player:Button("Shield", function ()
         for _, v in pairs(game:GetService("Players"):GetPlayers()) do 
             if v ~= game:GetService("Players").LocalPlayer then
                 game:GetService("ReplicatedStorage").Events.AntiMonitor.Shield:FireServer(v.Character)
             end
         end
     end)
-    PlayerSection:NewButton("Heal", "Heals you back to full health!", function()
+    Player:Button("Heal", function ()
         for _, v in pairs(game:GetService("Players"):GetPlayers()) do 
             if v ~= game:GetService("Players").LocalPlayer then
                 game:GetService("ReplicatedStorage").Events.AntiMonitor.Heal:FireServer(v.Character)
             end
         end
     end)
-    PlayerSection:NewDropdown("Staff/Unreleased Suits", "Gives you staff/unreleased suits!", {"The Red Flash S6", "The Green Flash S6", "The Loganion","The Flash S5"}, function(currentOption)
+    Player:Dropdown("Staff/Unreleased Suits",{"The Red Flash S6", "The Green Flash S6", "The Loganion", "The Flash S5", "Option 5"},function(t)
         local args = {
-            [1] = (currentOption)
+            [1] = (t)
         }
         
         game:GetService("ReplicatedStorage").Events.LobbyEvents.Character:FireServer(unpack(args))
+        end)
+
+        
+       --Abilities
+       local Ablilites = Window:Tab("Abilites")
+       Ablilites:Label("Loads different character abilites")
+       Ablilites:Button("Thinker Abilites Loader", function ()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/TheFunnyMan120/My-Stuff/main/PrecHub%20Stuff/Thinker%20Loader", true))()
+       end)
+       Ablilites:Button("Amazo Abilites Loader", function ()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/TheFunnyMan120/My-Stuff/1baf505fe87e82f7adc835f05c2e1bad1b9e222b/PrecHub%20Stuff/Amazo%20Loader", true))()
+       end)
+       Ablilites:Button("Anti-Monitor Abilites Loader (FIX SOON)", function ()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/TheFunnyMan120/My-Stuff/main/PrecHub%20Stuff/Anti-Monitor%20Loader", true))()
+       end)
+       Ablilites:Button("Staff Abilities Loader", function ()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/TheFunnyMan120/My-Stuff/main/PrecHub%20Stuff/Staff%20Loader", true))()
     end)
     
-    
     --Misc
-    local Misc = Window:NewTab("Misc")
-    local MiscSection = Misc:NewSection("Misc")
-    MiscSection:NewButton("Wave", "Activates Anti-Monitor wave (permanently)!", function()
+    local Misc = Window:Tab("Misc")
+    Misc:Label("Misc")
+    Misc:Button("Wave", function ()
         for _, v in pairs(game:GetService("Players"):GetPlayers()) do 
             if v ~= game:GetService("Players").LocalPlayer then
                 game:GetService("ReplicatedStorage").Events.AntiMonitor.Wave:FireServer(v.Character)
             end
         end
     end)
-    MiscSection:NewButton("Speedforce Portal", "Opens a portal into the speedforce!", function()
+    Misc:Button("Speedforce Portal", function ()
         game.ReplicatedStorage.Events.Speedster.Speedforce:FireServer()
     end)
-    MiscSection:NewButton("Vibe Portal", "Broke randomly lol.", function()
+    Misc:Button("Vibe Portal", function ()
         game.ReplicatedStorage.Events.Vibe.VibePortal:FireServer()
     end)
-    MiscSection:NewButton("Extrapolator", "Use the extrapolator that goes nowhere!", function()
-        game.ReplicatedStorage.Events.Human.Teleport:FireServer()
+    Misc:Button("Extrapolator",function()
+        game.ReplicatedStorage.Events.Human.Teleport:FireServer()        
     end)
-    MiscSection:NewButton("Teleport UI", "Allows you to teleport to specific locations!", function()
+    Misc:Button("Teleport UI", function ()
         game:GetService("Players").LocalPlayer.PlayerGui.TeleportUI.Enabled = true
-    end)
-    MiscSection:NewKeybind("Toggle Hub", "Toggles the Hub!", Enum.KeyCode.LeftControl, function()
-        Library:ToggleUI()
-    end)
-   
-    --Credits
-    local Credits = Window:NewTab("Credits")
-    local CreditsSection = Credits:NewSection("Credits")
-    CreditsSection:NewLabel("UnbreakablePrec: UI maker and main scripter")
-    CreditsSection:NewLabel("I_AlwaysHappy: Functions scripter")
-    CreditsSection:NewLabel("HofZealous: Helper")
-    CreditsSection:NewLabel("UnbreakableNinj: The kill all method")
-    CreditsSection:NewLabel("ThirdDarkness: Cameo")
-    CreditsSection:NewLabel("This is a private script. Please do not leak this.")
-    local button = CreditsSection:NewButton("Discord Invite", "Copies the invite to the discord!", function()
-        setclipboard("https://discord.gg/PYxFtphzqg")
+    end) 
+    Misc:Button("Freecam Unlocker", function ()
+        loadstring(game:HttpGet(("https://pastebin.com/raw/Jy3ZkFQ6"),true))()
+        print("freecam loaded")
+        print("what I find funny is that this isn't needed at all, and that James literally has freecam in the game thats not locked.")
+    end) 
 
-        end)
-    
-    
+
 end
